@@ -73,10 +73,7 @@ bool readfil(Child children[], int size, const char* fileName)
 {
     ifstream fin(fileName);
 
-    if (!fin.is_open())
-    {
-        return false;
-    }
+    
 
     char surname[30];
     int genderValue;
@@ -194,9 +191,11 @@ void familia(Child children[], int size)
 void DR(const Child children[], int size)
 {
     time_t now = time(nullptr);
-    tm* date = localtime(&now);
-    int month = date->tm_mon + 1;
+    tm date;
+    localtime_s(&date, &now);
+    int month = date.tm_mon + 1;
     bool found = false;
+
 
     
 
